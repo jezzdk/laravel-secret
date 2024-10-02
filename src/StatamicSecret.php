@@ -138,4 +138,19 @@ class StatamicSecret implements Encrypter
             return $this->handler->{$name}($arguments);
         }
     }
+
+    public function getKey()
+    {
+        // required by the contract
+    }
+
+    public function getAllKeys()
+    {
+        // required by the contract
+    }
+
+    public function getPreviousKeys()
+    {
+        // required by the contract
+    }
 }
