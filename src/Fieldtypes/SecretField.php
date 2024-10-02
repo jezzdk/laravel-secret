@@ -26,7 +26,7 @@ class SecretField extends Fieldtype
         }
 
         try {
-            return StatamicSecretFacade::decryptString($value);
+            return StatamicSecretFacade::decryptString(base64_decode($value));
         } catch (\ErrorException $e) {
             // Oh no! We couldn't decrypt the value.
             return '<!-- Decryption error. Has the keys been overwritten? -->';
@@ -46,7 +46,7 @@ class SecretField extends Fieldtype
         }
 
         try {
-            return StatamicSecretFacade::decryptString($data);
+            return StatamicSecretFacade::decryptString(base64_decode($data));
         } catch (\ErrorException $e) {
             // Oh no! We couldn't decrypt the value.
             return '(decryption failed)';
@@ -65,7 +65,7 @@ class SecretField extends Fieldtype
             return '';
         }
 
-        return StatamicSecretFacade::encryptString(trim($data));
+        return base64_encode(StatamicSecretFacade::encryptString(trim($data)));
     }
 
     public function preProcessIndex($value)
